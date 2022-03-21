@@ -1,0 +1,49 @@
+<!--Show existing if its there-->
+<div class="dinner-body">
+{%if dinner%}
+<div class="card border-dark mt-3">
+    <div class="card-header">{{ dinner.dish }}</div>
+    <div class="card-body">
+        <textarea id="dinnerDescription" name="dinnerDescription">{{ dinner.description }}</textarea>
+        <br>
+        <textarea id="dinnerIngredient" name="dinnerIngredient">{{ dinner.ingredient }}</textarea>
+        <br>
+        <textarea id="dinnerMeasurement" name="dinnerMeasurement" >{{ dinner.measurement }}</textarea>
+    </div>
+</div>
+{% else %}
+<div class="card border-dark mt-3">
+    <div class="card-header">No dinner selected yet</div>
+    <div class="card-body"></div>
+</div>
+{% endif%}
+</div>
+<!--Roll the dice-->
+<div class="card border-dark mt-3">
+    <div class="card-header">Roll the Dice</div>
+    <div class="card-body">
+        <div class="form-group row mb-0">
+            <div class="col pr-3">
+                <button class="btn btn-success btn-block" id="rollthedicebutton" onclick="rollthedice()" geturl="">Roll
+                    The Dice</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Pick from list-->
+<div class="card border-dark mt-3">
+    <div class="card-header">Saved Dinners</div>
+    <div class="card-body">
+        <select class="custom-select" id="selectdinner">
+            <option value="-1">---------</option>
+            {% if alldinners %}
+            {% for dinner in alldinners %}
+            <option value="{{ dinner.id }}">{{ dinner.dish }}</option>
+            {% endfor %}
+            {% endif %}
+        </select>
+        <br><br>
+        <button type="button" class="btn btn-success btn-block" onclick="selectdinner()">Select</button>
+    </div>
+</div>

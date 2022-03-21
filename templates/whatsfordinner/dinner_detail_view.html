@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+
+{% block style %}<title>Whats For Dinner - Dinners</title>{% endblock style %}
+{% block title %}Dinners - {{ dinner.id }}{% endblock title %}
+
+{% block content %}
+
+    
+    <a href="{% url 'dinner_update' dinner.id %}" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Update Dinner</a>
+
+    <p>{{ dinner.dish }}</p>
+    <p>{{ dinner.description }}</p>
+    <p>{{ dinner.ingredient }}</p>
+    <p>{{ dinner.measurement }}</p>
+    <p>{{ dinner.Created_At }}</p>
+    <p>{{ dinner.Created_By }}</p>
+
+{% endblock content %}
+
+
+{% block scripts %}
+{% endblock scripts %}

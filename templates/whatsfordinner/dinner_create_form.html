@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+
+{% block style %}<title>Whats For Dinner - Dinners</title>{% endblock style %}
+{% block title %}Dinners - Create New{% endblock title %}
+{% block content %}
+
+    <form method="post">{% csrf_token %}
+        {{ form.as_p }}
+        <input class="form-control btn-primary"  type="submit" value="Create Dinner">
+    </form>
+    
+
+{% endblock content %}
+
+
+{% block scripts %}
+{% endblock scripts %}

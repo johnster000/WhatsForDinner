@@ -1,0 +1,20 @@
+{%if dinner%}
+<div class="card border-dark mt-3">
+    <div class="card-header" id="dinnerDish">{{ dinner.dish }}</div>
+    <div class="card-body">
+        <textarea id="dinnerDescription" name="dinnerDescription">{{ dinner.description }}</textarea>
+        <br>
+        <textarea id="dinnerIngredient" name="dinnerIngredient">{{ dinner.ingredient }}</textarea>
+        <br>
+        <textarea id="dinnerMeasurement" name="dinnerMeasurement" >{{ dinner.measurement }}</textarea>
+        <input type="hidden" id="dinnerID" name="dinnerID" value="{{ dinner.id }}">
+        <input type="hidden" id="dinnerType" name="dinnerType" value="{{ random }}">
+        <button type="button" class="btn btn-success btn-block" onclick="savedinner()">Save</button>
+    </div>
+</div>
+{% else %}
+<div class="card border-dark mt-3">
+    <div class="card-header">No dinner selected yet</div>
+    <div class="card-body"></div>
+</div>
+{% endif%}

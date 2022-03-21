@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+
+{% block style %}<title>Whats For Dinner - Dinners</title>{% endblock style %}
+{% block title %}Dinners{% endblock title %}
+{% block content %}
+
+
+    <!-- DataTable -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="d-sm-flex align-items-center justify-content-between">
+                <!-- Search -->
+                <form class=" d-sm-inline-block form-inline mr-auto ml-md-3 my-2  mw-100 navbar-search" style="margin-left:0!important" method="post" action="/dinners/">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <input id="searchinput" name="searchinput" type="text" class="form-control bg-light border-0 small" placeholder="Search Dinners..."
+                            aria-label="Search" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="Submit">
+                                <i class="fas fa-search fa-sm" ></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <a href="{% url 'dinner_create' %}" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> New Dinner</a>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th>Dinner_ID</th>
+                            <th>Dish Name</th>
+                            <th>Created By</th>
+                        </tr>
+                    </thead>
+                
+                    <tbody>
+                        {% for dinner in page_obj %}
+                        <tr>
+                            <td><a href="{% url 'dinner_detail' dinner.id %}">{{ dinner.id }}</a></td>
+                            <td>{{ dinner.dish }}</td>
+                            <td>{{ dinner.Created_By }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% if page_obj.has_other_pages %}
+                    <nav aria-label="...">    
+                        <ul class="pagination">
+                            {% if page_obj.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                                </li>
+                            {% else %}
+                                <li class="page-item disabled">
+                                    <a class="page-link">Previous</a>
+                                </li>
+                            {% endif %}
+                            {% for i in page_obj.paginator.page_range %}
+                                {% if page_obj.number == i %}
+                                    <li class="page-item active">
+                                        <a class="page-link">{{ i }} <span class="sr-only">(current)</span></a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                                    </li>
+                              {% endif %}
+                            {% endfor %}
+                            {% if page_obj.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                                </li>
+                            {% else %}
+                            <li class="page-item disabled">
+                                <a class="page-link">Next</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </nav>    
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+
+
+{% block scripts %}
+{% endblock scripts %}
