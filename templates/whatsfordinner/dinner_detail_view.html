@@ -1,23 +1,25 @@
 {% extends 'base.html' %}
 
-
 {% block style %}<title>Whats For Dinner - Dinners</title>{% endblock style %}
 {% block title %}Dinners - {{ dinner.id }}{% endblock title %}
 
-{% block content %}
-
-    
+{% block content %} 
     <a href="{% url 'dinner_update' dinner.id %}" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Update Dinner</a>
-
-    <p>{{ dinner.dish }}</p>
-    <p>{{ dinner.description }}</p>
-    <p>{{ dinner.ingredient }}</p>
-    <p>{{ dinner.measurement }}</p>
-    <p>{{ dinner.Created_At }}</p>
-    <p>{{ dinner.Created_By }}</p>
-
+    <div class="form-group">
+        <label for="dinnerDescription">Dish</label>
+        <input disabled type="text" class="form-control" id="dinnerDish" name="dinnerDish" value="{{ dinner.dish }}">
+        <label for="dinnerDescription">Desciption</label>
+        <textarea disabled class="form-control" id="dinnerDescription" name="dinnerDescription">{{ dinner.description }}</textarea>
+        <label for="dinnerIngredient">Ingredients</label>
+        <textarea disabled class="form-control" id="dinnerIngredient" name="dinnerIngredient">{{ dinner.ingredient }}</textarea>
+        <label for="Measurement">Measurement</label>
+        <textarea disabled class="form-control" id="dinnerMeasurement" name="dinneMeasurement" >{{ dinner.measurement }}</textarea>
+        <label for="dinnerCreated_At">Created_At</label>
+        <input disabled type="text" class="form-control" id="dinnerDish" name="dinnerDish" value="{{ dinner.Created_At }}">
+        <label for="dinnerCreated_By">Created_By</label>
+        <input disabled type="text" class="form-control" id="dinnerDish" name="dinnerDish" value="{{ dinner.Created_By }}">
+    </div>
 {% endblock content %}
-
 
 {% block scripts %}
 {% endblock scripts %}

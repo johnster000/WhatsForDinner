@@ -5,110 +5,44 @@
 {% block title %}Home{% endblock title %}
 
 {% block content %}
-<!-- Dinner modal -->
-<div class="modal fade" id="Dinnermodal" role="dialog" geturl="{% url 'ajax_getdinner' %}" rollurl="{% url 'ajax_getrandomdinner' %}" selecturl="{% url 'ajax_getselecteddinner' %}" saveurl="{% url 'ajax_saveselecteddinner' %}">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Dinner</h3>
-            </div>
-            <div class="modal-body">
-                
+    <!-- Dinner modal -->
+    <div class="modal fade" id="Dinnermodal" role="dialog" geturl="{% url 'ajax_getdinner' %}" rollurl="{% url 'ajax_getrandomdinner' %}" selecturl="{% url 'ajax_getselecteddinner' %}" saveurl="{% url 'ajax_saveselecteddinner' %}">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Dinner</h3>
+                    <button class="btn btn-danger" data-dismiss="modal" aria-label="Close">cancel</button>
+                </div>
+                <div class="modal-body">
+                    <div id="dicespinner" style="display:none">
+                        <div class="card-loader"></div>
+                        <div class="card-loadertext">Getting Food...</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-<div id='calendar'></div>
-
+    <div id='calendar'></div>
 {% endblock content %}
 
-
 {% block scripts %}
-<link href="{% static "vendor/fullcalendar/main.css" %}?v=1.0" rel='stylesheet' />
-<script src="{% static "vendor/fullcalendar/main.js" %}?v=1.0"></script>
-<script>
-    var clickeddate
-    var calendaritem
-    document.addEventListener('DOMContentLoaded', function() {
-      var calendarEl = document.getElementById('calendar');
-      calendaritem = new FullCalendar.Calendar(calendarEl, {
-        timeZone: 'UTC',
-        initialView: 'dayGridMonth',
-        events: '{% url 'ajax_getalldinner' %}',
-        dateClick: function(info) {
-            getdinner(info.dateStr);
-          }
-
-      });
-      calendaritem.render();
-    });
-
-    function getdinner(date) {
-        clickeddate = date
-        var modal = $('#Dinnermodal');
-        var url = modal.attr('geturl');
-        $.ajax({
-            url: url,
-            data: {
-                'date': date,
-            },
-            success: function (data) {
-                modal.find('.modal-body').html(data);
-                modal.find('.modal-title').text(date + ' Dinner');
-                modal.modal('show');
-            }
+    <link href="{% static "vendor/fullcalendar/main.css" %}?v=1.0" rel='stylesheet' />
+    <script src="{% static "vendor/fullcalendar/main.js" %}?v=1.0"></script>
+    <script>
+        var clickeddate
+        var calendaritem
+        document.addEventListener('DOMContentLoaded', function() {
+          var calendarEl = document.getElementById('calendar');
+          calendaritem = new FullCalendar.Calendar(calendarEl, {
+            timeZone: 'UTC',
+            initialView: 'dayGridMonth',
+            events: '{% url 'ajax_getalldinner' %}',
+            dateClick: function(info) {
+                getdinner(info.dateStr);
+              }
+          });
+          calendaritem.render();
         });
-    };
-    
-    function rollthedice() {
-        var modal = $('#Dinnermodal');
-        var url = modal.attr('rollurl');
-        $.ajax({
-            url: url,
-            success: function (data) {
-                modal.find('.dinner-body').html(data);
-            }
-        });
-    };
-
-    function selectdinner() {
-        var modal = $('#Dinnermodal');
-        var url = modal.attr('selecturl');
-        $.ajax({
-            url: url,
-            data:{
-                'dinner_id': $('#selectdinner').val(),
-            },
-            success: function (data) {
-                modal.find('.dinner-body').html(data);
-            }
-        });
-    };  
-
-    //create date model
-    function savedinner() {
-        var modal = $('#Dinnermodal');
-        var url = modal.attr('saveurl');
-        $.ajax({
-            url: url,
-            data:{
-                'dinnerID': $('#dinnerID').val(),
-                'random': $('#dinnerType').val(),
-                'dinnerDescription': $('#dinnerDescription').val(),
-                'dinnerIngredient': $('#dinnerIngredient').val(),
-                'dinnerMeasurement': $('#dinnerMeasurement').val(),
-                'dinnerDate': clickeddate,
-                'dinnerDish': $('#dinnerDish').html(),
-            },
-            success: function (data) {
-                console.log(data)
-                if (data = 'Success'){
-                    modal.modal('hide'); 
-                    calendaritem.refetchEvents();
-                };
-            }
-        });
-    };  
-</script>
+    </script>
+    <script src="{% static "js/ajaxcalls.js" %}?v=1.0"></script>
 {% endblock scripts %}

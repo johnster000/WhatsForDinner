@@ -8,7 +8,7 @@ class Dinner(models.Model):
     dish = models.CharField(max_length=50)
     description = models.TextField(blank=True)
     ingredient = models.TextField(blank=True)
-    mesurement = models.TextField(blank=True)
+    measurement = models.TextField(blank=True)
     Created_At = models.DateTimeField(auto_now_add=True)
     Created_By = models.ForeignKey(User, on_delete=models.PROTECT, editable=False, related_name='Dinner_created')
 

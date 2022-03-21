@@ -1,20 +1,31 @@
 {%if dinner%}
-<div class="card border-dark mt-3">
-    <div class="card-header" id="dinnerDish">{{ dinner.dish }}</div>
-    <div class="card-body">
-        <textarea id="dinnerDescription" name="dinnerDescription">{{ dinner.description }}</textarea>
-        <br>
-        <textarea id="dinnerIngredient" name="dinnerIngredient">{{ dinner.ingredient }}</textarea>
-        <br>
-        <textarea id="dinnerMeasurement" name="dinnerMeasurement" >{{ dinner.measurement }}</textarea>
-        <input type="hidden" id="dinnerID" name="dinnerID" value="{{ dinner.id }}">
-        <input type="hidden" id="dinnerType" name="dinnerType" value="{{ random }}">
-        <button type="button" class="btn btn-success btn-block" onclick="savedinner()">Save</button>
+    <div class="card border-dark mt-3">
+        <div class="card-header" id="dinnerDish">{{ dinner.dish }}</div>
+        <div class="card-body">
+            <div id="dicespinner" style="display:none">
+                <div class="card-loader"></div>
+                <div class="card-loadertext">Getting Food...</div>
+            </div>
+            <div class="form-group">
+                <label for="dinnerDescription">Desciption</label>
+                <textarea class="form-control" id="dinnerDescription" name="dinnerDescription">{{ dinner.description }}</textarea>
+                <label for="dinnerIngredient">Ingredients</label>
+                <textarea class="form-control" id="dinnerIngredient" name="dinnerIngredient">{{ dinner.ingredient }}</textarea>
+                <label for="Measurement">Measurement</label>
+                <textarea class="form-control" id="dinnerMeasurement" name="dinnerMeasurement" >{{ dinner.measurement }}</textarea>
+                <input type="hidden" id="dinnerID" name="dinnerID" value="{{ dinner.id }}">
+                <input type="hidden" id="dinnerType" name="dinnerType" value="{{ random }}">
+                <button type="button" class="btn btn-success btn-block" onclick="savedinner()">Save</button>
+            </div>
+        </div>
     </div>
-</div>
 {% else %}
-<div class="card border-dark mt-3">
-    <div class="card-header">No dinner selected yet</div>
-    <div class="card-body"></div>
-</div>
+    <div class="card border-dark mt-3">
+        <div class="card-header">No dinner selected yet</div>
+        <div class="card-body"></div>
+        <div id="dicespinner" style="display:none">
+            <div class="card-loader"></div>
+            <div class="card-loadertext">Getting Food...</div>
+        </div>
+    </div>
 {% endif%}
