@@ -21,11 +21,11 @@ Walkthrough
 7. Manage your existing dinner ideas from the left menu, which will allow you to search and edit existing ideas, or create new ones.
 8. Admin site is available aswell which you can get to by navigating to the top right and clicking on your profile
 
-Full disclosure, the model of the dinner was modeled after the data sent by the API. So plans to look for a "Random Recepie" API is in the works
+Full disclosure, the model of the dinner was modeled after the data sent by the API. So plans to look for a "Random Recipe" API is in the works
 
 Future plans include:
 -Images of the meals
--Tweaking the recepie model by adding more relevant fields (API was limited to the data i could get)
+-Tweaking the recipe model by adding more relevant fields (API was limited to the data i could get)
 -Dynamic portions on ingredients
 -Grocery list export
 -Import standard recepie format from websites
