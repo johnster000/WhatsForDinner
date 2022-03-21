@@ -32,4 +32,4 @@ Future plans include:
 -Add ability to do lunch and breakfast (maybe?.. the name would have to change i guess)
 -Dockerizing the site
 
-Critisism welcome!
+Criticism welcome!
