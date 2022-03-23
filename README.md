@@ -14,7 +14,7 @@ password is admin
 Walkthrough
 1. Clone the repo
 2. Start the django runserver.py
-3. Navigate to the localhost on port 8080
+3. Navigate to the localhost on port 8000
 4. Login using admin
 5. Click on a date on the calendar to edit or view the dinner if there is already one selected
 6. Roll the dice for a new random dinner that will get saved into your invetory once you lock it in, or select from an existing dish you've previously had!
